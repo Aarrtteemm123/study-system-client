@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+  <div *ngIf="action != 'Delete'; else elseTemplate">
+    <mat-form-field>
+      <input [formControl]="studFirstNameControl" placeholder="{{action}} Student" matInput [(ngModel)]="local_data.user.firstName">
+      <mat-error *ngIf="studFirstNameControl.errors!=null">
+        First name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [formControl]="studLastNameControl" matInput [(ngModel)]="local_data.user.lastName">
+      <mat-error *ngIf="studLastNameControl.errors!=null">
+        Last name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [formControl]="studEmailFormControl" matInput [(ngModel)]="local_data.user.email">
+      <mat-error *ngIf="studEmailFormControl.errors!=null">
+        Email is <strong>invalid</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input [formControl]="studGroupControl" type="number" matInput [(ngModel)]="local_data.group">
+      <mat-error *ngIf="studGroupControl.errors!=null">
+        Group is <strong>invalid</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select style="padding-top: 10px" [(ngModel)]="local_data.specialty">
+        <mat-option *ngFor="let specialty of specialties" [value]="specialty.name" [ngModel]="local_data.specialty.name">
+          {{specialty.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{local_data.user.firstName}} {{local_data.user.lastName}}</b>?
+  </ng-template>
+</div>
+<div mat-dialog-actions>
+  <button [disabled]="!isValidStudentData()&&action!='Delete'" mat-button color="primary" (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

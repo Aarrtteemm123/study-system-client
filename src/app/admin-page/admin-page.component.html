@@ -1,0 +1,380 @@
+<h1 class="titleText">Admin page</h1>
+<mat-list class="list-label">
+  <mat-list-item style="padding-left: 15px;font-size: 20px;">Admin: {{admin.user.firstName}} {{admin.user.lastName}}</mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>
+<mat-tab-group (click)="updateData()">
+  <mat-tab label="Student request">
+
+    <h3 style="padding-top: 20px;padding-left: 70px">Student request</h3>
+
+    <div class="container text-center">
+
+      <table style="margin-left:70px;width: 90%" mat-table [dataSource]="dataSrcRequestStud" #mytable
+             class="my-table mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID.</th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.firstName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="last name">
+          <th mat-header-cell *matHeaderCellDef> Last name</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.lastName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="group">
+          <th mat-header-cell *matHeaderCellDef> Group</th>
+          <td mat-cell *matCellDef="let element"> {{element.group}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="specialty">
+          <th mat-header-cell *matHeaderCellDef> Specialty</th>
+          <td mat-cell *matCellDef="let element"> {{element.specialty}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action</th>
+          <td mat-cell *matCellDef="let element" style="color: blue;font-weight: 500" class="action-link">
+            <button mat-raised-button color="primary" (click)="confirmUser(element,'RequestStud')">Confirm</button>
+            |
+            <button mat-raised-button color="warn" (click)="openStudDialog('Delete',element,'request')">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsStud;" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsStud;"></tr>
+      </table>
+    </div>
+
+    <button class="button2" mat-raised-button color="primary" (click)="clkButConfirmAllStud()">Confirm all students
+    </button>
+    <button mat-raised-button color="warn" (click)="clkButDeleteAllReqStud()">Delete request all students</button>
+  </mat-tab>
+
+  <mat-tab label="Teacher request">
+    <h3 style="padding-top: 20px;padding-left: 70px">Teacher request</h3>
+    <div class="container text-center">
+
+      <table style="margin-left:70px;width: 90%" mat-table [dataSource]="dataSrcRequestTeachers" #mytable
+             class="my-table mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID.</th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.firstName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="last name">
+          <th mat-header-cell *matHeaderCellDef> Last name</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.lastName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="work experience">
+          <th mat-header-cell *matHeaderCellDef> Work experience</th>
+          <td mat-cell *matCellDef="let element"> {{element.workExperience}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="skills">
+          <th mat-header-cell *matHeaderCellDef> Skills</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button [matMenuTriggerFor]="menu">Show skills</button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item *ngFor="let skill of element.skillsLst">{{ skill }}</button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action</th>
+          <td mat-cell *matCellDef="let element" style="color: blue;font-weight: 500" class="action-link">
+            <button mat-raised-button color="primary" (click)="confirmUser(element,'RequestTeachers')">Confirm</button>
+            |
+            <button mat-raised-button color="warn" (click)="openTeacherDialog('Delete',element,'request')">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsTeacher"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsTeacher;"></tr>
+      </table>
+      <button class="button2" mat-raised-button color="primary" (click)="clkButConfirmAllTeachers()">Confirm all
+        teachers
+      </button>
+      <button mat-raised-button color="warn" (click)="clkButDeleteReqTeachers()">Delete request all teachers</button>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Admin request">
+    <h3 style="padding-top: 20px;padding-left: 70px">Admin request</h3>
+    <div class="container text-center">
+
+      <table style="margin-left:70px;width: 90%" mat-table [dataSource]="dataSrcRequestAdmins" #mytable
+             class="my-table mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID.</th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.firstName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="last name">
+          <th mat-header-cell *matHeaderCellDef> Last name</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.lastName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action</th>
+          <td mat-cell *matCellDef="let element" style="color: blue;font-weight: 500" class="action-link">
+            <button mat-raised-button color="primary" (click)="confirmUser(element,'RequestAdmins')">Confirm</button>
+            |
+            <button mat-raised-button color="warn" (click)="openAdminDialog('Delete',element,'request')">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsAdmin"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsAdmin;"></tr>
+      </table>
+      <button class="button2" mat-raised-button color="primary" (click)="clkButConfirmAllAdmins()">Confirm all admins
+      </button>
+      <button mat-raised-button color="warn" (click)="clkButDeleteAllReqAdmins()">Delete request all admins</button>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Students">
+    <h3 style="padding-top: 20px;padding-left: 70px">Students</h3>
+    <div class="container text-center">
+
+      <table style="margin-left:70px;width: 90%" mat-table [dataSource]="dataSrcAllStud" #mytable
+             class="my-table mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID.</th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.firstName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="last name">
+          <th mat-header-cell *matHeaderCellDef> Last name</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.lastName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email</th>
+          <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="group">
+          <th mat-header-cell *matHeaderCellDef> Group</th>
+          <td mat-cell *matCellDef="let element"> {{element.group}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="specialty">
+          <th mat-header-cell *matHeaderCellDef> Specialty</th>
+          <td mat-cell *matCellDef="let element"> {{element.specialty}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action</th>
+          <td mat-cell *matCellDef="let element" style="color: blue;font-weight: 500" class="action-link">
+            <button mat-raised-button color="primary" (click)="openStudDialog('Update',element,'all')">Edit</button> |
+            <button mat-raised-button color="warn" (click)="openStudDialog('Delete',element,'all')">Delete</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsStud"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsStud;"></tr>
+      </table>
+      <h6 style="margin-top: 20px"></h6>
+      <button class="button2" mat-raised-button color="warn" (click)="clkButDeleteAllStud()">Delete all students</button>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Teachers">
+    <h3 style="padding-top: 20px;padding-left: 70px">Teachers</h3>
+    <table style="margin-left:70px;width: 90%" mat-table [dataSource]="dataSrcAllTeachers" #mytable
+           class="my-table mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID.</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.user.firstName}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="last name">
+        <th mat-header-cell *matHeaderCellDef> Last name</th>
+        <td mat-cell *matCellDef="let element"> {{element.user.lastName}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email</th>
+        <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="work experience">
+        <th mat-header-cell *matHeaderCellDef> Work experience</th>
+        <td mat-cell *matCellDef="let element"> {{element.workExperience}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="groups">
+        <th mat-header-cell *matHeaderCellDef> Groups</th>
+        <td mat-cell *matCellDef="let element"> {{element.groups}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="skills">
+        <th mat-header-cell *matHeaderCellDef> Skills</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button [matMenuTriggerFor]="menu">Show skills</button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngFor="let skill of element.skillsLst">{{ skill }}</button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element" style="color: blue;font-weight: 500" class="action-link">
+          <button mat-raised-button color="primary" (click)="openTeacherDialog('Update',element,'all')">Edit</button>
+          |
+          <button mat-raised-button color="warn" (click)="openTeacherDialog('Delete',element,'all')">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsAllTeachers"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsAllTeachers;"></tr>
+    </table>
+    <h6 style="margin-top: 20px"></h6>
+    <button class="button2" mat-raised-button color="warn" (click)="clkButDeleteAllTeachers()">Delete all teachers</button>
+  </mat-tab>
+
+  <mat-tab label="Admins">
+    <h3 style="padding-top: 20px;padding-left: 70px">Admins</h3>
+    <table style="margin-left:70px;width: 90%" mat-table [dataSource]="dataSrcAllAdmins" #mytable
+           class="my-table mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID.</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.user.firstName}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="last name">
+        <th mat-header-cell *matHeaderCellDef> Last name</th>
+        <td mat-cell *matCellDef="let element"> {{element.user.lastName}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email</th>
+        <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element" style="color: blue;font-weight: 500" class="action-link">
+          <button mat-raised-button color="primary" (click)="openAdminDialog('Update',element,'all')">Edit</button>
+          |
+          <button mat-raised-button color="warn" (click)="openAdminDialog('Delete',element,'all')">Delete</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsAdmin"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsAdmin;"></tr>
+    </table>
+    <h6 style="margin-top: 20px"></h6>
+    <button class="button2" mat-raised-button color="warn" (click)="clkButDeleteAllAdmins()">Delete all admins</button>
+  </mat-tab>
+</mat-tab-group>
+<button class="button" mat-raised-button color="warn" (click)="clkButExit()">Exit</button>

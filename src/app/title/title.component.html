@@ -1,0 +1,28 @@
+<h1 class="titleText">Welcome</h1>
+<p style="padding-top: 40px"></p>
+<mat-form-field class="example-form-field">
+  <mat-label>Login</mat-label>
+  <input matInput type="text" [(ngModel)]="login">
+  <button mat-button *ngIf="login" matSuffix mat-icon-button aria-label="Clear" (click)="login=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<p></p>
+<mat-form-field class="example-form-field">
+  <mat-label>Password</mat-label>
+  <input matInput type="password" [(ngModel)]="password">
+  <button mat-button *ngIf="password" matSuffix mat-icon-button aria-label="Clear" (click)="password=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<p style="padding-top: 20px"></p>
+<mat-radio-group class="radioButton" [(ngModel)]="typeUser" aria-label="Select an option">
+  <mat-radio-button color="primary" value="student">student</mat-radio-button>
+  <mat-radio-button color="primary" value="teacher">teacher</mat-radio-button>
+  <mat-radio-button color="primary" value="admin">admin</mat-radio-button>
+</mat-radio-group>
+<p></p>
+<button mat-raised-button style="margin-top: 30px;margin-left: 600px" class="button" color="primary"
+        (click)="clkButSingUp()">Sing up
+</button>
+<button mat-raised-button class="button" color="primary" (click)="clkButSingIn()">Sing in</button>

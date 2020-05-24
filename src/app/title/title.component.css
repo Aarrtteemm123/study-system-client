@@ -1,0 +1,33 @@
+.title{
+  padding-left: 600px;
+  margin: 10rem;
+  font-size: 15pt;
+}
+.titleText{
+  font-size: 30pt;
+  padding-left: 645px;
+  padding-top: 70px;
+  font-family: 'Roboto', sans-serif;
+}
+.example-form-field {
+  width: 200px;
+  font-weight: 500;
+  padding-left: 630px;
+  padding-top: 15px;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.radioButton{
+  width: 30px;
+  height: 30px;
+  padding-left: 610px;
+}
+.button{
+  width: 120px;
+  height: 50px;
+  margin: 20px;
+  font-size: 15px;
+  border-radius: 30px;
+}

@@ -1,0 +1,33 @@
+table {
+  width: 60%;
+  margin-left: 300px;
+  margin-top: 20px;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.button{
+  margin-left: 660px;
+  margin-top: 30px;
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.list-label{
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}
+
+.titleText{
+  font-size: 20pt;
+  padding-left: 655px;
+  padding-top: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+

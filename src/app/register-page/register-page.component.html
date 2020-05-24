@@ -1,0 +1,251 @@
+<h1 class="titleText">Registration page</h1>
+<mat-tab-group>
+  <mat-tab label="Registration student">
+    <h2 style="padding-top: 20px;padding-left: 640px">Registration student</h2>
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>First name</mat-label>
+      <input matInput [formControl]="studFirstNameControl" type="text" [(ngModel)]="student.user.firstName">
+      <mat-error *ngIf="studFirstNameControl.hasError('required')">
+        First name is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="student.user.firstName" matSuffix mat-icon-button aria-label="Clear"
+              (click)="student.user.firstName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Last name</mat-label>
+      <input matInput [formControl]="studLastNameControl" type="text" [(ngModel)]="student.user.lastName">
+      <mat-error *ngIf="studLastNameControl.hasError('required')">
+        Last name is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="student.user.lastName" matSuffix mat-icon-button aria-label="Clear"
+              (click)="student.user.lastName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <form class="example-form">
+      <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput [formControl]="studEmailFormControl" [(ngModel)]="student.user.email" placeholder="Ex. pat@example.com">
+        <mat-error *ngIf="studEmailFormControl.hasError('email') && !studEmailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="studEmailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Group</mat-label>
+      <input matInput [formControl]="studGroupControl" type="number" [(ngModel)]="student.group">
+      <mat-error *ngIf="studGroupControl.errors!=null">
+        Group less or equals <strong>zero</strong>
+      </mat-error>
+      <button mat-button *ngIf="student.group" matSuffix mat-icon-button aria-label="Clear" (click)="student.group=0">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Login</mat-label>
+      <input matInput [formControl]="studLoginControl" type="text" [(ngModel)]="student.user.login">
+      <mat-error *ngIf="studLoginControl.hasError('required')">
+        Login is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="student.user.login" matSuffix mat-icon-button aria-label="Clear"
+              (click)="student.user.login=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Password</mat-label>
+      <input matInput [formControl]="studPasswordControl" type="password" [(ngModel)]="student.user.password">
+      <mat-error *ngIf="studPasswordControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="student.user.password" matSuffix mat-icon-button aria-label="Clear"
+              (click)="student.user.password=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <h4 style="padding-top: 10px;padding-left: 640px">Select your specialty</h4>
+    <mat-form-field style="padding-top: 10px;padding-left: 640px">
+      <mat-label>Specialty</mat-label>
+      <mat-select [formControl]="studSpecialtyControl" [(ngModel)]="student.specialty">
+        <mat-option *ngFor="let specialty of specialties" [value]="specialty.name">
+          {{specialty.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="studSpecialtyControl.hasError('required')">
+        Specialty is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <p></p>
+    <button [disabled]="!isValidStudentData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button color="primary" (click)="clkButRegStud()">
+      Send request
+    </button>
+  </mat-tab>
+  <mat-tab label="Registration teacher">
+    <h2 style="padding-top: 20px;padding-left: 640px">Registration teacher</h2>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>First name</mat-label>
+      <input matInput [formControl]="teacherFirstNameControl" type="text" [(ngModel)]="teacher.user.firstName">
+      <mat-error *ngIf="teacherFirstNameControl.hasError('required')">
+        First name is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="teacher.user.firstName" matSuffix mat-icon-button aria-label="Clear"
+              (click)="teacher.user.firstName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Last name</mat-label>
+      <input matInput [formControl]="teacherLastNameControl" type="text" [(ngModel)]="teacher.user.lastName">
+      <mat-error *ngIf="teacherLastNameControl.hasError('required')">
+        Last name is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="teacher.user.lastName" matSuffix mat-icon-button aria-label="Clear"
+              (click)="teacher.user.lastName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <form class="example-form">
+      <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput [formControl]="teacherEmailFormControl" placeholder="Ex. pat@example.com">
+        <mat-error *ngIf="teacherEmailFormControl.hasError('email') && !studEmailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="teacherEmailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Work experience</mat-label>
+      <input matInput [formControl]="teacherWorkExpControl" type="number" [(ngModel)]="teacher.workExperience">
+      <mat-error *ngIf="teacherWorkExpControl.errors!=null">
+        Work experience is less <strong>zero</strong>
+      </mat-error>
+      <button mat-button *ngIf="teacher.workExperience" matSuffix mat-icon-button aria-label="Clear"
+              (click)="teacher.workExperience=0">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Login</mat-label>
+      <input matInput [formControl]="teacherLoginControl" type="text" [(ngModel)]="teacher.user.login">
+      <mat-error *ngIf="teacherLoginControl.hasError('required')">
+        Login is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="teacher.user.login" matSuffix mat-icon-button aria-label="Clear"
+              (click)="teacher.user.login=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Password</mat-label>
+      <input matInput [formControl]="teacherPasswordControl" type="password" [(ngModel)]="teacher.user.password">
+      <mat-error *ngIf="teacherPasswordControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="teacher.user.password" matSuffix mat-icon-button aria-label="Clear"
+              (click)="teacher.user.password=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-selection-list style="padding-top: 10px;" #skills [(ngModel)]="teacher.skillsLst"
+                        (ngModelChange)="getSkillsList($event)">
+      <mat-error *ngIf="teacher.skillsLst.length==0">
+        Skills is <strong>empty</strong>
+      </mat-error>
+      <mat-list-option color="primary" *ngFor="let skill of teacherSkills" [value]="skill">
+        {{skill}}
+      </mat-list-option>
+    </mat-selection-list>
+    <button [disabled]="!isValidTeacherData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button color="primary" (click)="clkButRegTeacher()">
+      Send request
+    </button>
+  </mat-tab>
+
+  <mat-tab label="Registration admin">
+    <h2 style="padding-top: 20px;padding-left: 640px">Registration admin</h2>
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>First name</mat-label>
+      <input matInput [formControl]="adminFirstNameControl" type="text" [(ngModel)]="admin.user.firstName">
+      <mat-error *ngIf="adminFirstNameControl.hasError('required')">
+        First name is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="admin.user.firstName" matSuffix mat-icon-button aria-label="Clear"
+              (click)="admin.user.firstName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Last name</mat-label>
+      <input matInput type="text" [formControl]="adminLastNameControl" [(ngModel)]="admin.user.lastName">
+      <mat-error *ngIf="adminLastNameControl.hasError('required')">
+        Last name is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="admin.user.lastName" matSuffix mat-icon-button aria-label="Clear"
+              (click)="admin.user.lastName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <form class="example-form">
+      <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput [formControl]="adminEmailFormControl" placeholder="Ex. pat@example.com">
+        <mat-error *ngIf="adminEmailFormControl.hasError('email') && !studEmailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="adminEmailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Login</mat-label>
+      <input matInput [formControl]="adminLoginControl" type="text" [(ngModel)]="admin.user.login">
+      <mat-error *ngIf="adminLoginControl.hasError('required')">
+        Login is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="admin.user.login" matSuffix mat-icon-button aria-label="Clear"
+              (click)="admin.user.login=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-form-field">
+      <mat-label>Password</mat-label>
+      <input matInput [formControl]="adminPasswordControl" type="password" [(ngModel)]="admin.user.password">
+      <mat-error *ngIf="adminPasswordControl.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <button mat-button *ngIf="admin.user.password" matSuffix mat-icon-button aria-label="Clear"
+              (click)="admin.user.password=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button [disabled]="!isValidAdminData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button color="primary" (click)="clkButRegAdmin()">
+      Send request
+    </button>
+  </mat-tab>
+</mat-tab-group>
+<button class="button" mat-raised-button color="warn" (click)="clkButExit()">Exit</button>
