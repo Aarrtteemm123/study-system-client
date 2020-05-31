@@ -27,6 +27,7 @@ export class StudentPageComponent implements OnInit {
     this.studentService.getStudent().subscribe(data => {
       if (data != null) {
         this.student = data;
+        this.update();
       } else {
         this.router.navigate(['title']);
       }

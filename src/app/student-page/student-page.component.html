@@ -1,4 +1,4 @@
-<h1 (mouseover)="update()" class="titleText">Student page</h1>
+<h1 class="titleText">Student page</h1>
 <mat-list class="list-label">
   <mat-list-item style="font-size: 20px;">Name: {{student.user.firstName}} {{student.user.lastName}}</mat-list-item>
   <mat-divider></mat-divider>
@@ -6,9 +6,9 @@
   <mat-divider></mat-divider>
   <mat-list-item style="font-size: 20px;">Specialty: {{student.specialty}}</mat-list-item>
 </mat-list>
-<p (mouseover)="update()" style="padding-top: 20px"></p>
+<p style="padding-top: 20px"></p>
 
-<table (mouseover)="update()" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <!-- Position Column -->
   <ng-container matColumnDef="Id">
@@ -32,4 +32,4 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<button (mouseover)="update()" class="button" mat-raised-button color="warn" (click)="clkButExit()">Exit</button>
+<button class="button" mat-raised-button color="warn" (click)="clkButExit()">Exit</button>
