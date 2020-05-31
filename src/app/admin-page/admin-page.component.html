@@ -1,6 +1,7 @@
 <h1 class="titleText">Admin page</h1>
 <mat-list class="list-label">
-  <mat-list-item style="padding-left: 15px;font-size: 20px;">Admin: {{admin.user.firstName}} {{admin.user.lastName}}</mat-list-item>
+  <mat-list-item style="padding-left: 15px;font-size: 20px;">
+    Admin: {{admin.user.firstName}} {{admin.user.lastName}}</mat-list-item>
   <mat-divider></mat-divider>
 </mat-list>
 <mat-tab-group (click)="updateData()">
@@ -62,7 +63,7 @@
           </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsStud;" ></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsStud;"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsStud;"></tr>
       </table>
     </div>
@@ -128,7 +129,8 @@
           <td mat-cell *matCellDef="let element" style="color: blue;font-weight: 500" class="action-link">
             <button mat-raised-button color="primary" (click)="confirmUser(element,'RequestTeachers')">Confirm</button>
             |
-            <button mat-raised-button color="warn" (click)="openTeacherDialog('Delete',element,'request')">Delete</button>
+            <button mat-raised-button color="warn" (click)="openTeacherDialog('Delete',element,'request')">Delete
+            </button>
           </td>
         </ng-container>
 
@@ -245,7 +247,8 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef> Action</th>
           <td mat-cell *matCellDef="let element" style="color: blue;font-weight: 500" class="action-link">
-            <button mat-raised-button color="primary" (click)="openStudDialog('Update',element,'all')">Edit</button> |
+            <button mat-raised-button color="primary" (click)="openStudDialog('Update',element,'all')">Edit</button>
+            |
             <button mat-raised-button color="warn" (click)="openStudDialog('Delete',element,'all')">Delete</button>
           </td>
         </ng-container>
@@ -254,7 +257,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumnsStud;"></tr>
       </table>
       <h6 style="margin-top: 20px"></h6>
-      <button class="button2" mat-raised-button color="warn" (click)="clkButDeleteAllStud()">Delete all students</button>
+      <button class="button2" mat-raised-button color="warn" (click)="clkButDeleteAllStud()">Delete all students
+      </button>
     </div>
   </mat-tab>
 
@@ -325,7 +329,8 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumnsAllTeachers;"></tr>
     </table>
     <h6 style="margin-top: 20px"></h6>
-    <button class="button2" mat-raised-button color="warn" (click)="clkButDeleteAllTeachers()">Delete all teachers</button>
+    <button class="button2" mat-raised-button color="warn" (click)="clkButDeleteAllTeachers()">Delete all teachers
+    </button>
   </mat-tab>
 
   <mat-tab label="Admins">

@@ -2,14 +2,15 @@
 <div mat-dialog-content>
   <div *ngIf="action != 'Delete'; else elseTemplate">
     <mat-form-field>
-      <input [formControl]="adminFirstNameControl"  placeholder="{{action}} Admin" matInput [(ngModel)]="local_data.user.firstName">
+      <input [formControl]="adminFirstNameControl" placeholder="{{action}} Admin" matInput
+             [(ngModel)]="local_data.user.firstName">
       <mat-error *ngIf="adminFirstNameControl.errors!=null">
         First name is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input [formControl]="adminLastNameControl"  matInput [(ngModel)]="local_data.user.lastName">
+      <input [formControl]="adminLastNameControl" matInput [(ngModel)]="local_data.user.lastName">
       <mat-error *ngIf="adminLastNameControl.errors!=null">
         Last name is <strong>required</strong>
       </mat-error>
@@ -28,6 +29,7 @@
   </ng-template>
 </div>
 <div mat-dialog-actions>
-  <button [disabled]="!isValidAdminData()&&action!='Delete'" color="primary" mat-button (click)="doAction()">{{action}}</button>
+  <button [disabled]="!isValidAdminData()&&action!='Delete'" color="primary" mat-button
+          (click)="doAction()">{{action}}</button>
   <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
 </div>

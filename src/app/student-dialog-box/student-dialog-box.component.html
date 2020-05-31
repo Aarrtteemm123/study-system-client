@@ -2,7 +2,8 @@
 <div mat-dialog-content>
   <div *ngIf="action != 'Delete'; else elseTemplate">
     <mat-form-field>
-      <input [formControl]="studFirstNameControl" placeholder="{{action}} Student" matInput [(ngModel)]="local_data.user.firstName">
+      <input [formControl]="studFirstNameControl" placeholder="{{action}} Student" matInput
+             [(ngModel)]="local_data.user.firstName">
       <mat-error *ngIf="studFirstNameControl.errors!=null">
         First name is <strong>required</strong>
       </mat-error>
@@ -31,7 +32,8 @@
 
     <mat-form-field>
       <mat-select style="padding-top: 10px" [(ngModel)]="local_data.specialty">
-        <mat-option *ngFor="let specialty of specialties" [value]="specialty.name" [ngModel]="local_data.specialty.name">
+        <mat-option *ngFor="let specialty of specialties" [value]="specialty.name"
+                    [ngModel]="local_data.specialty.name">
           {{specialty.name}}
         </mat-option>
       </mat-select>
@@ -43,6 +45,7 @@
   </ng-template>
 </div>
 <div mat-dialog-actions>
-  <button [disabled]="!isValidStudentData()&&action!='Delete'" mat-button color="primary" (click)="doAction()">{{action}}</button>
+  <button [disabled]="!isValidStudentData()&&action!='Delete'" mat-button color="primary"
+          (click)="doAction()">{{action}}</button>
   <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
 </div>

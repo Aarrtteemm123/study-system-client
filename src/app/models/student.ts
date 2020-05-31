@@ -2,7 +2,7 @@ import {User} from './user';
 import {Subject} from './subject';
 
 export class Student {
-  user:User;
+  user: User;
   id = 0;
   group = 0;
   specialty = '';

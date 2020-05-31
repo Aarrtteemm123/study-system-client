@@ -1,7 +1,7 @@
 import {User} from './user';
 
 export class Teacher {
-  user:User;
+  user: User;
   id = 0;
   workExperience = 0;
   groups = [];

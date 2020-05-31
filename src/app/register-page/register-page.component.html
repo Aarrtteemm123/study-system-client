@@ -29,7 +29,8 @@
     <form class="example-form">
       <mat-form-field style="padding-top: 10px;padding-left: 640px" class="example-full-width">
         <mat-label>Email</mat-label>
-        <input matInput [formControl]="studEmailFormControl" [(ngModel)]="student.user.email" placeholder="Ex. pat@example.com">
+        <input matInput [formControl]="studEmailFormControl" [(ngModel)]="student.user.email"
+               placeholder="Ex. pat@example.com">
         <mat-error *ngIf="studEmailFormControl.hasError('email') && !studEmailFormControl.hasError('required')">
           Please enter a valid email address
         </mat-error>
@@ -87,7 +88,8 @@
       </mat-error>
     </mat-form-field>
     <p></p>
-    <button [disabled]="!isValidStudentData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button color="primary" (click)="clkButRegStud()">
+    <button [disabled]="!isValidStudentData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button
+            color="primary" (click)="clkButRegStud()">
       Send request
     </button>
   </mat-tab>
@@ -176,7 +178,8 @@
         {{skill}}
       </mat-list-option>
     </mat-selection-list>
-    <button [disabled]="!isValidTeacherData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button color="primary" (click)="clkButRegTeacher()">
+    <button [disabled]="!isValidTeacherData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button
+            color="primary" (click)="clkButRegTeacher()">
       Send request
     </button>
   </mat-tab>
@@ -243,7 +246,8 @@
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-    <button [disabled]="!isValidAdminData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button color="primary" (click)="clkButRegAdmin()">
+    <button [disabled]="!isValidAdminData()" style="margin-top: 10px;margin-left: 680px" mat-raised-button
+            color="primary" (click)="clkButRegAdmin()">
       Send request
     </button>
   </mat-tab>

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Inject, OnInit, Optional} from '@angular/core';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {Teacher} from '../models/teacher';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormControl, Validators} from '@angular/forms';
@@ -23,7 +23,6 @@ export class TeacherDialogBoxComponent implements OnInit {
     public dialogRef: MatDialogRef<TeacherDialogBoxComponent>,
     //@Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: Teacher) {
-    console.log(data);
     this.local_data = {...data};
     this.action = this.local_data.action;
   }

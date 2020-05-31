@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 
@@ -7,21 +7,20 @@ import {map} from 'rxjs/operators';
 })
 export class TeacherService {
   baseUrl = 'http://localhost:8000';
-  constructor(private http: HttpClient) { }
 
-  updateMarks(student)
-  {
-    return this.http.post(this.baseUrl + '/teacher/updateMarks', {data:student});
+  constructor(private http: HttpClient) {
   }
 
-  getStudentByInfo(strInfo)
-  {
-    return this.http.post(this.baseUrl + '/teacher', {info:strInfo});
+  updateMarks(student) {
+    return this.http.post(this.baseUrl + '/teacher/updateMarks', {data: student});
   }
 
-  getTeacher()
-  {
-    return this.http.get(this.baseUrl+'/teacher').pipe(map((data: any) => {
+  getStudentByInfo(strInfo) {
+    return this.http.post(this.baseUrl + '/teacher', {info: strInfo});
+  }
+
+  getTeacher() {
+    return this.http.get(this.baseUrl + '/teacher').pipe(map((data: any) => {
       return data;
     }));
   }

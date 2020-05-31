@@ -1,7 +1,7 @@
 import {User} from './user';
 
 export class Admin {
-  user:User;
+  user: User;
   id = 0;
 
   constructor(user: User) {
