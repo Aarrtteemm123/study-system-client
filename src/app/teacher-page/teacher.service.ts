@@ -6,7 +6,8 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TeacherService {
-  baseUrl = 'http://localhost:8000';
+  //baseUrl = 'http://localhost:8000';
+  baseUrl = 'https://lit-journey-87714.herokuapp.com';
 
   constructor(private http: HttpClient) {
   }

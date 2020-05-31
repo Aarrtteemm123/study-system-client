@@ -7,7 +7,8 @@ import {map} from 'rxjs/operators';
 })
 export class AdminService {
 
-  baseUrl = 'http://localhost:8000';
+  //baseUrl = 'http://localhost:8000';
+  baseUrl = 'https://lit-journey-87714.herokuapp.com';
 
   constructor(private http: HttpClient) {
   }

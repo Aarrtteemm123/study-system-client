@@ -5,7 +5,8 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class TitleService {
-  baseUrl = 'http://localhost:8000';
+  //baseUrl = 'http://localhost:8000';
+  baseUrl = 'https://lit-journey-87714.herokuapp.com';
 
   constructor(private http: HttpClient) {
   }
